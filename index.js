@@ -40,6 +40,10 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+  return integers.reduce((acc, curr) => {
+    if(curr.integer > acc) return curr.integer;
+    return acc;
+  }, 0)
 }
 
 class Counter {
