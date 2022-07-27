@@ -8,8 +8,12 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const objCopy = {...obj}
+  const keys = Object.keys(objCopy);
+  for(let key of keys)
+    objCopy[key] = objCopy[key].trim()
+  return objCopy;
 }
-
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
  * @param {object} obj - an object with properties that are strings
@@ -20,6 +24,10 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  const keys = Object.keys(obj);
+  for(let key of keys)
+    obj[key] = obj[key].trim()
+  return obj;
 }
 
 /**
