@@ -100,7 +100,6 @@ class Seasons {
    */
   next() {
     // ✨ implement
-    console.log(this.currentSeason, this.allSeasons[this.currentSeason])
     if(this.currentSeason < 3 ) this.currentSeason += 1
       else this.currentSeason = 0;
     return this.allSeasons[this.currentSeason]
@@ -118,6 +117,9 @@ class Car {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
+    this.milesAvail = this.tank * mpg;
+    this.mpg = mpg;
+    this.tankSize = tankSize;
   }
 
   /**
@@ -135,6 +137,17 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    let driven;
+    if(this.milesAvail === 0) return this.odometer;
+    if(this.milesAvail >= distance) {
+      driven = distance;
+      this.milesAvail -= distance
+    } else {
+      driven = distance - this.milesAvail;
+      this.milesAvail = 0;
+    } 
+    this.tank -= (driven / this.mpg).toFixed(1)
+    return this.odometer += driven;
   }
 
   /**
@@ -150,6 +163,14 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    let galAdd;
+    if(gallons >= (this.tankSize - this.tank)){
+      galAdd = gallons - (gallons - (this.tankSize - this.tank))
+    } else {
+      galAdd = gallons;
+    }
+    this.tank += galAdd;
+    return this.milesAvail = this.tank * this.mpg
   }
 }
 
