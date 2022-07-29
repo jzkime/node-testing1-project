@@ -9,8 +9,7 @@
 function trimProperties(obj) {
   // ✨ implement
   const objCopy = {...obj}
-  const keys = Object.keys(objCopy);
-  for(let key of keys)
+  for(let key in objCopy)
     objCopy[key] = objCopy[key].trim()
   return objCopy;
 }
@@ -24,8 +23,7 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
-  const keys = Object.keys(obj);
-  for(let key of keys)
+  for(let key in obj)
     obj[key] = obj[key].trim()
   return obj;
 }
@@ -143,7 +141,7 @@ class Car {
       driven = distance;
       this.milesAvail -= distance
     } else {
-      driven = distance - this.milesAvail;
+      driven = this.milesAvail;
       this.milesAvail = 0;
     } 
     this.tank -= (driven / this.mpg).toFixed(1)
@@ -165,7 +163,7 @@ class Car {
     // ✨ implement
     let galAdd;
     if(gallons >= (this.tankSize - this.tank)){
-      galAdd = gallons - (gallons - (this.tankSize - this.tank))
+      galAdd = (this.tankSize - this.tank)
     } else {
       galAdd = gallons;
     }

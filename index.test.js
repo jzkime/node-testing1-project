@@ -142,12 +142,15 @@ describe('[Exercise 6] Car', () => {
     expect(currentTank).toBe(expected)
   })
   test('[17] refueling allows to keep driving', () => {
-    const expected = 20;
+    let expected = 20; // tank
     focus.drive(600)
     focus.drive(1)
     focus.refuel(99)
     const currentTank = focus.tank;
     expect(currentTank).toBe(expected)
+    expected = 610
+    const newOdo = focus.drive(10)
+    expect(newOdo).toBe(expected)
   })
   test('[18] adding fuel to a full tank has no effect', () => {
     const expected = 600;
